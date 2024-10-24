@@ -1,18 +1,36 @@
-
 // src/app/page.tsx
 
-import Typography from "@mui/material/Typography";
 
-export const metadata = { title: `Domov | ZoskaSnap` };
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/authOptions";
+import AuthHomeView from "../../sections/AuthHomeView";
+import NonAuthHomeView from "../../sections/NonAuthHomeView";
 
-export default function Home() {
-  
-  return (
+export const metadata = { title: "Domov | ZoškaSnap" };
 
-      <Typography> Domovska stranka </Typography>
+export default async function HomePage() {
+  // Fetch session on the server
+  const session = await getServerSession(authOptions);
 
-  );
+  // Conditionally render authenticated or non-authenticated home view
+  return session ? <AuthHomeView session={session} /> : <NonAuthHomeView />;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
