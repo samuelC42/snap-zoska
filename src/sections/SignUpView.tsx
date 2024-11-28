@@ -45,7 +45,7 @@ export default function SignUpView() {
         variant="outlined"
         fullWidth
         startIcon={<GoogleIcon />}
-        onClick={() => signIn("google")}
+        onClick={() => signIn("google", {callbackUrl: "/prispevok"})}
         sx={{ mb: 1 }}
       >
         Registrovať sa účtom Google
