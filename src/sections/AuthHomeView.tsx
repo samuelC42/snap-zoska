@@ -14,11 +14,6 @@ export default function AuthHomeView({ session }: { session: Session }) {
       <Typography variant="h4" sx={{ mb: 3 }}>
         Vitajte, {session?.user?.name || "užívateľ"}!
       </Typography>
-
-
-      {/* <Box sx={{ mt: 2 }}>
-        <pre>{JSON.stringify(session, null, 2)}</pre>
-      </Box> */}
     </Container>
   );
 }
