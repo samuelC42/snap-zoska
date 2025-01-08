@@ -8,6 +8,7 @@ import {
   BottomNavigationAction,
   Box,
   Avatar,
+  IconButton,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
@@ -17,6 +18,7 @@ import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import DarkModeButton from "@/components/DarkModeButton"; // Assuming DarkModeButton exists and handles theme toggling
 
 export default function Navbar() {
   const [value, setValue] = React.useState("/");
@@ -64,8 +66,13 @@ export default function Navbar() {
   const navigationPaths = status === "authenticated" ? authPaths : nonAuthPaths;
 
   return (
-    <Box sx={{ width: "100%", position: "fixed", bottom: 0, }}>
-      <BottomNavigation showLabels value={value} onChange={handleNavigation}>
+    <Box sx={{ width: "100%", position: "fixed", bottom: 0, display: "flex", alignItems: "center" }}>
+      <BottomNavigation
+        sx={{ flex: 1 }}
+        showLabels
+        value={value}
+        onChange={handleNavigation}
+      >
         {navigationPaths.map((path) => (
           <BottomNavigationAction
             key={path.value}
@@ -75,6 +82,9 @@ export default function Navbar() {
           />
         ))}
       </BottomNavigation>
+      <Box sx={{ p: 1 }}>
+        <DarkModeButton />
+      </Box>
     </Box>
   );
 }

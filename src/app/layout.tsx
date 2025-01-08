@@ -6,8 +6,7 @@ import Navbar from "../components/NavBar";
 import AuthProvider from "../components/AuthProvider";
 import { ThemeProvider } from "@mui/material/styles";
 import { Box, CssBaseline } from "@mui/material";
-import theme from "../theme";
-import DarkModeButton from "@/components/DarkModeButton";
+import theme from "../theme/theme";
 
 export const metadata: Metadata = {
   title: "SnapZoška",
@@ -32,9 +31,6 @@ export default function RootLayout({
                 flexDirection: "column",
               }}
             >                
-              <Box style={{ display: "flex", flexDirection: "row-reverse", position: "fixed", width: "100%",}}>
-                <DarkModeButton />
-              </Box>
               <main style={{ flexGrow: 1 }}>{children}</main>
             </div>
             <Navbar />
