@@ -66,9 +66,21 @@ export default function Navbar() {
   const navigationPaths = status === "authenticated" ? authPaths : nonAuthPaths;
 
   return (
-    <Box sx={{ width: "100%", position: "fixed", bottom: 0, display: "flex", alignItems: "center" }}>
+    <Box
+      sx={{
+        width: "100%",
+        position: "fixed",
+        bottom: 0,
+        display: "flex",
+        alignItems: "center",
+        backgroundColor: "background.paper", // Set background color
+      }}
+    >
       <BottomNavigation
-        sx={{ flex: 1 }}
+        sx={{
+          flex: 1,
+          backgroundColor: "white", // Ensure the background color is white
+        }}
         showLabels
         value={value}
         onChange={handleNavigation}
@@ -82,7 +94,7 @@ export default function Navbar() {
           />
         ))}
       </BottomNavigation>
-      <Box sx={{ p: 1 }}>
+      <Box sx={{ p: 1, backgroundColor: "white" }}> {/* Set background color here as well */}
         <DarkModeButton />
       </Box>
     </Box>
