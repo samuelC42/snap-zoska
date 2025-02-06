@@ -7,9 +7,9 @@ import {
   Checkbox,
   Container,
   FormControlLabel,
-  TextField,
   Typography,
-  Divider,
+  Box,
+  Paper,
   Alert,
 } from "@mui/material";
 import { signIn } from "next-auth/react";
@@ -41,80 +41,99 @@ export default function SignUpView() {
       maxWidth="xs"
       sx={{
         display: "flex",
-        flexDirection: "column",
+        justifyContent: "center",
         alignItems: "center",
-        mt: 5,
-        p: 3,
-        bgcolor: "background.paper",
-        boxShadow: 3,
-        borderRadius: 2,
+        minHeight: "100vh",
+        padding: 3,
       }}
     >
-      {/* Logo / Title */}
-      <Typography variant="h5" sx={{ mb: 3 }}>
-        Registrácia
-      </Typography>
-
-      {/* Sign-in link */}
-      <Typography variant="body1" sx={{ mb: 6 }}>
-        Už máte účet?{" "}
+      <Paper
+        sx={{
+          width: "100%",
+          padding: 4,
+          borderRadius: 2,
+          boxShadow: 3,
+          backgroundColor: "background.paper",
+        }}
+      >
+        {/* Title */}
         <Typography
-          component="a"
-          href="/auth/prihlasenie"
-          sx={{ textDecoration: "none", color: "primary.main" }}
+          variant="h4"
+          align="center"
+          sx={{ fontWeight: "bold", color: "primary.main", mb: 4 }}
         >
-          Prihláste sa
+          Registrácia
         </Typography>
-      </Typography>
 
-      {/* Show Alert if GDPR is not checked */}
-      {showAlert && (
-        <Alert severity="error" sx={{ width: "100%", mb: 2 }}>
-          Musíte súhlasiť s podmienkami GDPR, aby ste mohli pokračovať.
-        </Alert>
-      )}
-
-      {/* Google Sign Up */}
-      <Button
-        variant="outlined"
-        fullWidth
-        startIcon={<GoogleIcon />}
-        onClick={() => handleSignUp("google")}
-        sx={{ mb: 1 }}
-      >
-        Registrovať sa účtom Google
-      </Button>
-
-      {/* GitHub Sign Up */}
-      <Button
-        variant="outlined"
-        fullWidth
-        startIcon={<GitHubIcon />}
-        onClick={() => handleSignUp("github")}
-        sx={{ mb: 3 }}
-      >
-        Registrovať sa účtom GitHub
-      </Button>
-
-      {/* GDPR Checkbox */}
-      <FormControlLabel
-        control={
-          <Checkbox checked={gdprChecked} onChange={handleGdprChange} />
-        }
-        label={
-          <Typography variant="body2">
-            Súhlasím s{" "}
+        {/* Sign-in Link */}
+        <Box sx={{ mb: 4, textAlign: "center" }}>
+          <Typography variant="body1">
+            Už máte účet?{" "}
             <Typography
               component="a"
-              href="/gdpr"
+              href="/auth/prihlasenie"
               sx={{ textDecoration: "none", color: "primary.main" }}
             >
-              podmienkami GDPR
+              Prihláste sa
             </Typography>
           </Typography>
-        }
-        sx={{ alignSelf: "flex-start", mb: 2 }}
-      />
+        </Box>
+
+        {/* Show Alert if GDPR is not checked */}
+        {showAlert && (
+          <Alert severity="error" sx={{ width: "100%", mb: 2 }}>
+            Musíte súhlasiť s podmienkami GDPR, aby ste mohli pokračovať.
+          </Alert>
+        )}
+
+        {/* GDPR Checkbox */}
+        <FormControlLabel
+          control={<Checkbox checked={gdprChecked} onChange={handleGdprChange} />}
+          label={
+            <Typography variant="body2">
+              Súhlasím s{" "}
+              <Typography
+                component="a"
+                href="/gdpr"
+                sx={{ textDecoration: "none", color: "primary.main" }}
+              >
+                podmienkami GDPR
+              </Typography>
+              {" "}a{" "}
+              <Typography
+                component="a"
+                href="/podmienky"
+                sx={{ textDecoration: "none", color: "primary.main" }}
+              >
+                podmienkami používania
+              </Typography>
+            </Typography>
+          }
+          sx={{ alignSelf: "flex-start", mb: 3 }}
+        />
+
+        {/* Google Sign-Up */}
+        <Button
+          variant="outlined"
+          fullWidth
+          startIcon={<GoogleIcon />}
+          onClick={() => handleSignUp("google")}
+          sx={{ mb: 2 }}
+        >
+          Registrovať sa účtom Google
+        </Button>
+
+        {/* GitHub Sign-Up */}
+        <Button
+          variant="outlined"
+          fullWidth
+          startIcon={<GitHubIcon />}
+          onClick={() => handleSignUp("github")}
+          sx={{ mb: 3 }}
+        >
+          Registrovať sa účtom GitHub
+        </Button>
+      </Paper>
     </Container>
   );
 }

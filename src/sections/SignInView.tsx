@@ -4,12 +4,11 @@
 
 import {
   Button,
-  Checkbox,
   Container,
-  FormControlLabel,
-  TextField,
+  Paper,
   Typography,
   Divider,
+  Box,
 } from "@mui/material";
 import { signIn } from "next-auth/react";
 import GoogleIcon from "@mui/icons-material/Google";
@@ -21,42 +20,66 @@ export default function SignInView() {
       maxWidth="xs"
       sx={{
         display: "flex",
-        flexDirection: "column",
+        justifyContent: "center",
         alignItems: "center",
-        mt: 5,
-        p: 3,
-        bgcolor: "background.paper",
-        boxShadow: 3,
-        borderRadius: 2,
+        minHeight: "100vh",
+        padding: 3,
       }}
     >
-      {/* Logo / Title */}
-      <Typography variant="h5" sx={{ mb: 3 }}>
-        Prihlásenie
-      </Typography>
-
-      <Typography variant="body1" sx={{ mb: 6 }}>
-        Nemáte účet? <a href="/auth/registracia">Registrujte sa</a>
-      </Typography>
-
-      <Button
-        variant="outlined"
-        fullWidth
-        startIcon={<GoogleIcon />}
-        onClick={() => signIn("google", { callbackUrl: "/prispevok" })}
-        sx={{ mb: 1 }}
+      <Paper
+        sx={{
+          width: "100%",
+          padding: 4,
+          borderRadius: 2,
+          boxShadow: 3,
+          backgroundColor: "background.paper",
+        }}
       >
-        Prihlásiť sa účtom Google
-      </Button>
+        {/* Title */}
+        <Typography
+          variant="h4"
+          align="center"
+          sx={{ fontWeight: "bold", color: "primary.main", mb: 4 }}
+        >
+          Prihlásenie
+        </Typography>
 
-      <Button
-        variant="outlined"
-        fullWidth
-        startIcon={<GitHubIcon />}
-        sx={{ mb: 1 }}
-      >
-        Prihlásiť sa účtom GitHub
-      </Button>
+        {/* Sign-up Link */}
+        <Box sx={{ mb: 4, textAlign: "center" }}>
+          <Typography variant="body1">
+            Nemáte účet?{" "}
+            <Typography
+              component="a"
+              href="/auth/registracia"
+              sx={{ textDecoration: "none", color: "primary.main" }}
+            >
+              Registrujte sa
+            </Typography>
+          </Typography>
+        </Box>
+
+        {/* Google Sign-In */}
+        <Button
+          variant="outlined"
+          fullWidth
+          startIcon={<GoogleIcon />}
+          onClick={() => signIn("google", { callbackUrl: "/prispevok" })}
+          sx={{ mb: 2 }}
+        >
+          Prihlásiť sa účtom Google
+        </Button>
+
+        {/* GitHub Sign-In */}
+        <Button
+          variant="outlined"
+          fullWidth
+          startIcon={<GitHubIcon />}
+          sx={{ mb: 2 }}
+        >
+          Prihlásiť sa účtom GitHub
+        </Button>
+
+      </Paper>
     </Container>
   );
 }
