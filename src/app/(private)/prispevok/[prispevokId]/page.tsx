@@ -2,7 +2,10 @@
 
 import { PrismaClient } from "@prisma/client";
 import Typography from "@mui/material/Typography";
-import { Card, CardContent, CardMedia, Box } from "@mui/material";
+import { Card, CardContent, CardMedia, Box, IconButton } from "@mui/material";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
 const prisma = new PrismaClient();
 
@@ -44,6 +47,27 @@ const PostDetail = async ({ params }: { params: { prispevokId: string }}) => {
             <Typography variant="caption" color="textSecondary">
               {new Date(post.createdAt).toLocaleString()}
             </Typography>
+
+            <Box sx={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              mt: 2,
+              borderTop: '1px solid #eee',
+              pt: 2
+            }}>
+              <IconButton aria-label="like">
+                <FavoriteBorderIcon />
+              </IconButton>
+              <IconButton aria-label="comment">
+                <ChatBubbleOutlineIcon />
+              </IconButton>
+              <IconButton 
+                aria-label="bookmark"
+                sx={{ marginLeft: 'auto' }}
+              >
+                <BookmarkBorderIcon />
+              </IconButton>
+            </Box>
           </CardContent>
         </Card>
       </Box>

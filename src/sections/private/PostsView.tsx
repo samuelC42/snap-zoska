@@ -12,6 +12,11 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
+import IconButton from "@mui/material/IconButton";
+import Box from "@mui/material/Box";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
 // Server action import
 import { fetchPosts } from "@/app/actions/posts";
@@ -65,6 +70,27 @@ const PostsView = () => {
                 <Typography variant="body2" color="text.secondary">
                   {post.user.name || "Neznámy používateľ"}
                 </Typography>
+                
+                <Box sx={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  mt: 2,
+                  borderTop: '1px solid #eee',
+                  pt: 2
+                }}>
+                  <IconButton aria-label="like">
+                    <FavoriteBorderIcon />
+                  </IconButton>
+                  <IconButton aria-label="comment">
+                    <ChatBubbleOutlineIcon />
+                  </IconButton>
+                  <IconButton 
+                    aria-label="bookmark"
+                    sx={{ marginLeft: 'auto' }}
+                  >
+                    <BookmarkBorderIcon />
+                  </IconButton>
+                </Box>
               </CardContent>
             </Card>
           </Grid>
